@@ -1,0 +1,16 @@
+// Progress Module
+Field _ Datatype _ Ex: Value
+
+id              - string        - erensn2929
+
+student_id      - string        - std123
+course_id       - string        - course123
+module_id       - string        - module123
+progress_percentage     - decimal   - 1-100
+is_completed            - boolean   - true/false
+last_accessed_at        - timestamp - 10-05-2025
+
+created_at      - date          - 10-10-2020
+updated_at      - date          - 10-10-2020
+
+---

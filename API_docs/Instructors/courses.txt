@@ -1,0 +1,21 @@
+// Instructor Courses Page
+
+{
+    page-url: "courses-instructor",
+    content-type: "creator btn",
+    details: "btn that redirects",
+    redirect: "/courses/create",
+    backend: "none", // none
+    input: "creator_id, owner in instructors",
+    output: Redirect to create course page
+}
+
+{
+    page-url: "courses-instructor",
+    content-type: "creator-section",
+    details: "instructor videocard",
+    redirect: "/courses/course_id",
+    backend: "/courses/creator_id", // 9_icm
+    input: "creator_id, creator",
+    output: [public+non courses]{ id, name, status, thumbnail, level, price }
+}

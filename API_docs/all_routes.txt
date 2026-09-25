@@ -1,0 +1,86 @@
+Backend APIs by Routes
+
+// Module APIs, how to redirect to other instructors ?
+
+// Role Management
+// Student Progress Tracking
+// Lecture Piracy
+
+Auth & Users _non
+
+1-. /student/create         post        create new students
+2-. /home/login             post        general entry
+
+> Instructor Profile _ip
+
+3-. /inst                     get+a       fetch owner details
+4-. /inst/:id                 get+a       fetch inst details
+5-. /inst/update-avatar       put+a         inst avatar update
+6-. /inst/update-info         put+a         inst update personal details
+7-. /inst/update-profile      put+a         inst update profnl details
+
+
+> Inst Course Management _icm
+
+1-. /courses/:creator_id/               get+a           get all courses created by instructor
+2-. /courses/:creator_id/inst           get+a           get course wher user is an added as instructor
+9-. /courses/:creator_id/all            get+a           get all course of instructor with drafted also
+
+// /course/create page -> course_page
+// 3-. /courses/create                  post+a          create a new course
+
+// 5-. /courses/:course_id/details      get+a           get full course details
+// 4-. /courses/:course_id/delete       delete course   delete course and related resources
+// 7-. /courses/:course_id              put+a           edit course details
+
+## Instructor managing in course
+
+// Can anyone add you to course ?
+// 6-. /courses/:course_id/inst            get+a           get assigned instructors for a course
+
+10-. /courses/course_id/allinst      get+a                   get all inst of course [only for added instructor]
+11-. /courses/course_id/addinst/email=""        post+a         add inst
+12-. /courses/course_id/remove/email=""         delete+a       remove inst
+13-. /course/course_id/getinstructor/query=""   get+a         find instructor
+
+> Instructor Curriculum (Syllabus) _ic
+
+1. /courses/:course_id/modules                          CRUD+a     Manage modules.
+2. /courses/:course_id/modules/:module_id/chapters      CRUD+a     Manage chapters.
+// 3. /courses/:course_id/modules/:module_id/tests      CRUD+a     Manage tests.
+
+
+> Instructor Analytics & Revenue _iar
+
+1-. /revenue                get+a       Get aggregated total sales.
+2-. /revenue/courses        get+a       Get revenue details per course.
+Note: Test pass/fail reports APIs are pending in the schema.
+
+---------------------------------------------------
+
+> Student Engagement & Progression _sep
+
+1-. /student/dashboard          get+a       Get current, longest, & start streak data.
+2-. /tasks                      CRUD+a      Manage student tasks.
+
+3-. /certificates/all           get+a       Get all generated certificates.
+4-. /certificates/:cert_id      get+a       Fetch specific certificate details.
+
+
+> Student Course C onsumption _scc
+
+1-. /course/search          get+a       Search courses with filters. Toggle favorite status.
+8-. /course/toggleFavorite/:course_id   CU  Add or remove course from favorite
+
+// student home
+2-. /course/getAllActiveCourses     get+a       Get actively enrolled courses with progress.
+
+3-. /course/getUserCourses          get+a       Get purchased course details.
+4-. /course/getAllFavoriteCourse    get+a       Get favorited courses.
+
+5-. /purchase/alldetails            get+a       Get purchase & billing history.
+
+6. /learning-modules               get+a       Get accessible curriculum for a purchased course.
+7. /buying-modules                 get+a       Get public course details for the checkout page.
+
+-----------------------------------------

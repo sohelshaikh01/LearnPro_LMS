@@ -1,0 +1,13 @@
+// tasks
+Field _ Datatype _ Ex: Value
+
+id              - string        - erensn2929
+title           - string        - task1
+content         - text          - notes revision
+is_complete     - boolean       - true, false
+owner_id        - string        - erer20209
+
+created_at      - date          - 10-10-2020
+updated_at      - date          - 10-10-2020
+
+---

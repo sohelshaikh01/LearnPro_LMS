@@ -1,0 +1,31 @@
+// instructor
+Field _ Datatype _ Ex: Value
+
+--personal
+
+id              - int/string    - erensn2929
+name            - string        - mr.sir
+bio             - text/string   - I am the sir.
+email           - string        - sir@teach.com
+password        - string        - (hash)
+avatar          - string        - https:/img (cdn)
+auth_Provider   - string        - token (--hash)
+
+// !include
+phone.no        - int           - +91 8010467585 (optional)
+location        - string        - sterlin (optional)
+
+--professional
+
+profession      - string        - engineer, designer
+category        - string/enum   - comp.sci.
+company         - string        - experience
+experience      - int           - 0-10 Not > 45
+skill (expertise)   - string    - React, Node.js, SD
+
+created_at      - string        - date
+updated_at      - string        - date
+
+---
+Id, Unique, Foreign, Not Null, Required, Default, Enum
+---

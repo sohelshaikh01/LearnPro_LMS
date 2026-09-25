@@ -1,0 +1,11 @@
+# Student Purchase Page
+
+{
+    page-url: "/purchase - purchased",
+    content-type: "Course Card",
+    details: "Student purchase list",
+    redirect: "None",
+    backend: "/purchase/addDetails, // 5_scc
+    input: "student_id",
+    output: [list]{ Course, Instructor, Price, Purchased on }
+}

@@ -1,0 +1,23 @@
+# Student My Course Page
+
+{
+    page-url: "/my-course - purchased",
+    content-type: "Course Card",
+    details: "Student purchased courses",
+    redirect: "/course/course_id",
+    backend: "/course/getUserCourses, // 3_scc
+    input: "student_id",
+    output: [courses]{ Course Details }
+}
+
+{
+    page-url: "/my-course - favorites",
+    content-type: "Course Card + Favorite Icon",
+    details: "Student favorite courses and toggle",
+    redirect: "/course/course_id",
+    backend: "/course/getAllFavoriteCourse, // 4_scc
+    input: "student_id",
+    output: [courses]{ Course Details }
+}
+
+// Also Course Favorite Toggle 8_scc

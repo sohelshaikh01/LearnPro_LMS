@@ -1,0 +1,53 @@
+# Instructor Profile Page
+
+{
+    page-url: "/profile/owner_id-instructor",
+    content-type: "Show all details",
+    details: { All Profile details },
+    redirect: "None",
+    backend: "/instructor/ + inst_id", // 3_ip
+    input: "instructor_id",
+    output: { instructor all details }
+}
+
+{
+    page-url: "/profile/owner_id-instructor",
+    content-type: "Change avatar",
+    details: { New avatar },
+    redirect: "None",
+    backend: "/instructor/update-avatar + inst_id", // 5_ip
+    input: "instructor_id + new_avatar",
+    output: "success and reload"
+}
+
+{
+    page-url: "/profile/owner_id-instructor",
+    content-type: "Edit personal details",
+    details: { Edit user personal details },
+    redirect: "None",
+    backend: "/instructor/update-info + inst_id", // 6_ip
+    input: "instructor_id + personal_details",
+    output: "success and reload"
+}
+
+{
+    page-url: "/profile/owner_id-instructor",
+    content-type: "Edit professional details",
+    details: { Edit user personal details },
+    redirect: "None",
+    backend: "/instructor/update-profile + inst_id", // 7_ip
+    input: "instructor_id + professional_details",
+    output: "success and reload"
+}
+
+// Other profile + no edit options
+
+{
+    page-url: "/profile/owner_id-instructor",
+    content-type: "Show all details",
+    details: { All Profile details },
+    redirect: "None",
+    backend: "/instructor/inst_id + inst_id", // 4_ip
+    input: "other inst_id",
+    output: "success and reload"
+}

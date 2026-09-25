@@ -1,0 +1,31 @@
+# Student Home Page
+
+{
+    page-url: "/home",
+    content-type: "Show streak, course in progress",
+    details: "Dashboard related data",
+    redirect: "None",
+    backend: "/student/dashboard, // 1_sep
+    input: "student_id",
+    output: { Instructor streak, progress, not open courses }
+}
+
+{
+    page-url: "/home - continue learning",
+    content-type: "Show course card and streak",
+    details: "Course Related Data Card",
+    redirect: "/course/course_id",
+    backend: "/student/getAllActiveCourses, // 2_scc
+    input: "student_id",
+    output: { Course details where user enrolled and progress > 0 & < 100 }
+}
+
+{
+    page-url: "/home - tasks",
+    content-type: "Tasks related student",
+    details: "Tasks students data",
+    redirect: "None",
+    backend: "/student/tasks, // 2_sep
+    input: "student_id",
+    output: { Instructor all tasks }
+}

@@ -1,0 +1,13 @@
+// module
+Field _ Datatype _ Ex: Value
+
+id              - string        - erensn2929
+course_id       - string        - n102
+
+name            - string        - module1
+sequence        - int           - 1, 2, 3
+
+created_at      - date          - 10-10-2020
+updated_at      - date          - 10-10-2020
+
+---

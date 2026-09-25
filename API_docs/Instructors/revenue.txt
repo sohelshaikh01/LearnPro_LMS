@@ -1,0 +1,22 @@
+// Instructor Revenue Page
+
+{
+    page-url: "/revenue-instructor",
+    content-type: "All Revenue",
+    details: { total sales, total revenue },
+    redirect: "None",
+    backend: "/revenue/ + inst_id", // 1_icr 
+    input: "instructor_id",
+    output: { total-sales, total-revenue }
+}
+
+{
+    page-url: "/revenue-instructor",
+    content-type: "Course wise revenue",
+    details: { course, price, sales, revenue },
+    redirect: "None",
+    backend: "/revenue/courses/ + inst_id", // 2_icr 
+    input: "instructor_id",
+    output: [course_revenue]{ course, price, sales, revenue e }
+}
+

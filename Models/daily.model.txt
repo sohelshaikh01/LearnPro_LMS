@@ -1,0 +1,18 @@
+// daily streak
+Field _ Datatype _ Ex: Value
+
+id              - string        - streak123
+student_id      - string        - erensn2929
+
+current_streak  - int           - 100
+longest_streak  - int           - 101
+last_streak_date     - date           - 10-10-2021
+
+created_at      - date          - 10-10-2020
+updated_at      - date          - 10-10-2020
+
+c_s = today + c_s
+l_s = max(c_s, l_s)
+last_date != yesterday ? c_s = 1 | today + c_s
+
+---

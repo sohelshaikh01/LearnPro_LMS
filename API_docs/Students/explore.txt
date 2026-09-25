@@ -1,0 +1,27 @@
+# Student Explore Page
+
+// In search and favorite
+// course state - View course
+
+{
+    page-url: "/explore",
+    content-type: "Course search bar",
+    details: "Show all courses",
+    redirect: "None",
+    backend: "/course/search, // 1_scc
+    input: "student_id",
+    output: [courses]{ Course Details }
+    // Reload the page
+}
+
+{
+    page-url: "/explore - favorite",
+    content-type: "Course Favorite button",
+    details: "Add or remove course from favorite",
+    redirect: "/course/course_id",
+    backend: "/course/toggleFavorite/course_id, // 8_scc
+    input: "course_id",
+    output: { Success, course_id }
+    // each course card check is in favorite
+}
+

@@ -1,0 +1,22 @@
+# Student Certificate Page
+
+{
+    page-url: "/certificates - card",
+    content-type: "Certificate card",
+    details: "Student certificate card",
+    redirect: "/certificates/cert_id",
+    backend: "/certificate/all, // 3_sep
+    input: "student_id",
+    output: [list]{ Course, Instructor, Price, Purchased on }
+}
+
+// Certificate checking public page
+{
+    page-url: "/certificates/cert_id - certificate",
+    content-type: "Certificate displays",
+    details: "Student certificate page, url to get copy",
+    redirect: "None",
+    backend: "/certificates/cert_id, // 4_sep
+    input: "cert_id",
+    output: { Certificate details, id }
+}

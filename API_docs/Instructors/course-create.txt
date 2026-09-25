@@ -1,0 +1,54 @@
+// Instructor Course Create Page
+
+{
+    page-url: "courses/create instructor",
+    content-type: "Create Form",
+    details: { name, thumbnail, description, price, category },
+    redirect: "/courses/course_id/view",
+    backend: "/courses/", // 3_icm
+    input: "creator_id, {course_details}",
+    output: { course_id, success }
+}
+
+// Course View Page
+
+{
+    page-url: "courses/course_id instructor",
+    content-type: "course-view page",
+    details: { name, thumbnail, description, price, category },
+    redirect: "/instructor page", "/edit-syllabus" owner,
+    backend: "/courses/course_id/details", 
+            "/course/course_id/inst",
+            // 5_icm, 6_icm
+    input: "creator_id, course_id",
+    output: { course details, 
+            [modules name + chapters count] }, 
+            { instructors },
+}
+
+// Course Details + Instructor Edit | Owner Only
+
+{
+    page-url: "courses/course_id-instructor",
+    content-type: "course-view edit details",
+    details: update { name, thumbnail, description, price, category },
+    redirect: "reload page",
+    backend: "/course/course_id" // 7_icm
+    input: "creator_id, {course_new_details}",
+    output: { course_id, success },
+}
+
+// Instructor Update - Important thing
+// Form update on each instructor change
+
+{
+    page-url: "courses/course_id instructor",
+    content-type: "course-view edit instructor",
+    details: update { add instructor },
+    redirect: "reload page",
+    backend: "/course/course_id"
+    input: "creator_id, course_id",
+    output: { course_id, success },
+    // 10_icm, 11_icm, 12_icm, 13_icm
+}
+

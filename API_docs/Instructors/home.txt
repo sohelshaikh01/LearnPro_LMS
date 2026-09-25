@@ -1,0 +1,22 @@
+// Instructor Home Page
+
+{
+    page-url: "home-instructor",
+    content-type: "my-courses section",
+    details: "instructor videocard",
+    redirect: "/course/course_id",
+    backend: "/course/creator_id", // 1_icm
+    input: "creator_id, owner = creator",
+    output: [public courses]{ id, name, status, thumbnail, level, price }
+}
+
+{
+    page-url: "home-added inst",
+    content-type: "as-instructor section",
+    details: "instructor videocard",
+    redirect: "/course/course_id",
+    backend: "/course/creator_id/instructor", // 2_icm
+    input: "creator_id, owner in instructors",
+    output: [public courses]{ id, name, status, thumbnail, level, price }
+}
+
