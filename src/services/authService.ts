@@ -1,4 +1,8 @@
 import { supabase } from "../supabase/supabaseClient";
+import {
+    uploadFileToBucket,
+    deleteFileFromBucket
+} from "./uploadService";
 
 interface InstructorDetails {
     name: string;
@@ -41,8 +45,11 @@ const registerAsInstructor = async (instructorDetails: InstructorDetails) => {
     if(authError) throw new Error("Instructor Register Error" + authError);
 
     const user = authData.user;
-
     if(!user) throw new Error("Instructor registration failed");
+
+    // profile image upload
+    const result = uploadFileToBucket(avatar, "profiles");
+    const profilePath = result.path;
 
     const { data: instructor, error: instructorError } = await supabase
         .from("instructors")
@@ -51,6 +58,7 @@ const registerAsInstructor = async (instructorDetails: InstructorDetails) => {
             name,
             email,
             bio,
+            avatar: ,
             password,
             profession,
             category,
@@ -71,6 +79,9 @@ const registerAsInstructor = async (instructorDetails: InstructorDetails) => {
     }
 }
 
+// supabase.storage
+//   .from("course-files")
+//   .createSignedUrl(profilePath, 3600);
 
 //loginAsStudent
 
@@ -84,8 +95,7 @@ const loginAsInstructor = async({ email, password } : TypeCredentails) => {
             email,
             password
         });
-
-        // create session and return
+        
     if(!authError) throw new Error("Instructor Login Error: Fail to login")
 
     return {
