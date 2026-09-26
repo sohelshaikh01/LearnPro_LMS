@@ -1,8 +1,9 @@
 import React from 'react'
 
 const Navbar = () => {
+
   return (
-    <div>
+    <div className='w-full bg-white text-black h-20'>
         Navbar
     </div>
   )

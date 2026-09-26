@@ -2,7 +2,7 @@ import { supabase } from "../supabase/supabaseClient";
 import {
     uploadFileToBucket,
     deleteFileFromBucket
-} from "./uploadService";
+} from "./upload/uploadService";
 
 interface InstructorDetails {
     name: string;
@@ -18,97 +18,115 @@ interface InstructorDetails {
 }
 
 interface TypeCredentails {
-    email: string,
-    password: string
+    email: string;
+    password: string;
 }
 
-//registerAsStudent - input and return type
+// registerAsStudent - input and return type
 
-    //registerAsInstructor
-
-const registerAsInstructor = async (instructorDetails: InstructorDetails) => {
-
+// registerAsInstructor
+const registerAsInstructor = async (
+    instructorDetails: InstructorDetails
+) => {
     const { name, email, bio, password, avatar } = instructorDetails;
     const { profession, category, company, experience, skills } = instructorDetails;
 
-    const {data: authData, error: authError } = await supabase.auth
-        .SignUp({
+    const { data: authData, error: authError } = await supabase.auth
+        .signUp({
             email,
             password,
             options: {
                 data: { role: "instructor" }
             }
-        })
+        });
 
-    console.log("Instructor Details:", instructorDetails)
+    if (authError)
+        throw new Error("Instructor Register Error: " + authError);
 
-    if(authError) throw new Error("Instructor Register Error" + authError);
+    const auth_user = authData.user;
 
-    const user = authData.user;
-    if(!user) throw new Error("Instructor registration failed");
+    if (!auth_user)
+        throw new Error("Instructor registration failed");
+
+    // Get authenticated user
+    const { data: { user } } =
+        await supabase.auth.getUser();
+
+    if (!user) {
+        throw new Error("User is not authenticated");
+    }
 
     // profile image upload
-    const result = await uploadFileToBucket(avatar, "profiles");
+    const result = await uploadFileToBucket(avatar, user.id);
     const profilePath = result.path;
 
     const { data: instructor, error: instructorError } = await supabase
-        .from("instructors")
+        .from("Instructors")
         .insert({
-            id: user.id,
+            auth_id: user.id,
             name,
             email,
             bio,
-            avatar: profilePath ,
-            password,
+            avatar: profilePath,
             profession,
             category,
             company,
             experience,
             skills
         })
-        .select()
+        .select("-password")
         .single();
 
-    if(instructorError) return console.log(instructorError)
+    if (instructorError)
+        throw new Error(
+            "Instructor creations failed: " + instructorError.message
+        );
+
+    console.log(instructor);
 
     return {
         authData,
         instructor,
         role: "instructor",
         jwt: authData.session?.access_token ?? null
-    }
-}
+    };
+};
 
 // supabase.storage
 //   .from("course-files")
 //   .createSignedUrl(profilePath, 3600);
 
-//loginAsStudent
+// loginAsStudent
 
-//loginAsInstructor
-const loginAsInstructor = async({ email, password } : TypeCredentails) => {
-    if(!email || !password) 
+// loginAsInstructor
+const loginAsInstructor = async ({
+    email,
+    password
+}: TypeCredentails) => {
+    if (!email || !password)
         throw new Error("Instructor Login Error: All credentials required");
 
     const { data: authData, error: authError } = await supabase.auth
-        .SignInWithPassword({
+        .signInWithPassword({
             email,
             password
         });
-        
-    if(!authError) throw new Error("Instructor Login Error: Fail to login")
+
+    if (!authError)
+        throw new Error(
+            "Instructor Login Error: Fail to login: " + authError
+        );
 
     return {
         authData,
         role: "instructor",
         jwt: authData.session?.access_token ?? null
-    }
-}
+    };
+};
 
-// Just 1 Function
-//logoutAsStudent
+// logoutAsStudent
 
-//logoutAsInstructor
+// logoutAsInstructor
 
 // user.role = user in role table
 // role.table
@@ -119,4 +137,4 @@ const loginAsInstructor = async({ email, password } : TypeCredentails) => {
 export {
     registerAsInstructor,
     loginAsInstructor
-}
+};

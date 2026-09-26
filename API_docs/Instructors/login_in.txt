@@ -1,5 +1,0 @@
-# Instructor Login Page
-
-// registerInstructor
-
-// loginInstructor

@@ -1,4 +1,4 @@
-import { supabase } from "../supabase/supabaseClient";
+import { supabase } from "../../supabase/supabaseClient";
 
 // to remove
 // uploadFileToBucket(profileFile, "profiles");
@@ -11,8 +11,8 @@ interface UploadData {
     fullPath: string;
 }
 
-const uploadFileToBucket = async (file: File, folder: string) : Promise<UploadData> => {
-    const filePath = `${folder}/${crypto.randomUUID()}-${file.name}`;
+const uploadFileToBucket = async (file: File, userId: string) : Promise<UploadData> => {
+    const filePath = `${userId}/${crypto.randomUUID()}-${file.name}`;
 
     const { data, error } = await supabase.storage
         .from("Course_Files")

@@ -1,21 +1,28 @@
-import "./index.css";
-import React from 'react';
+import { Outlet } from 'react-router-dom'
+import Navbar from '../components/layouts/Navbar';
+import Footer from "../components/layouts/Footer";
 
-const App = () => {
+const StudentLayout = () => {
+
   return (
-    <div>
-      
+    <div className='w-full h-20 min-h-screen bg-green-300'>
+      <div className='max-w-full text-white mx-auto flex-col items-center justify-center'>
+
+        <header>
+            <Navbar />
+        </header>
+
+        <main>
+            <Outlet />
+        </main>
+
+        <footer>
+            <Footer />
+        </footer>
+
+      </div>
     </div>
   )
 }
 
-export default App;
-
-
-login - [name + role] => jwt + role => [jwt+role]
-
-[details + jwt] => /course/
-
-[jwt+role] => role.auth ![student or not] => auth + role => call the api
-
-isauth -> (isapi works) go to api 
+export default StudentLayout;
