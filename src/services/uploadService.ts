@@ -5,7 +5,13 @@ import { supabase } from "../supabase/supabaseClient";
 // uploadFileToBucket(thumbnailFile, "thumbnails");
 // uploadFileToBucket(lectureFile, "lectures");
 
-const uploadFileToBucket = async (file: File, folder: string) => {
+interface UploadData {
+    path: string;
+    id: string;
+    fullPath: string;
+}
+
+const uploadFileToBucket = async (file: File, folder: string) : Promise<UploadData> => {
     const filePath = `${folder}/${crypto.randomUUID()}-${file.name}`;
 
     const { data, error } = await supabase.storage
@@ -20,7 +26,7 @@ const uploadFileToBucket = async (file: File, folder: string) => {
 }
 
 const deleteFileFromBucket = async (filePath: string) => {
-    const { data, error } = supabase
+    const { data, error } = await supabase.storage
       .from("Course_Files")
       .remove([filePath]);
 

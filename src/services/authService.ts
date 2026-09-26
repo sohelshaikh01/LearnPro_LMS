@@ -48,7 +48,7 @@ const registerAsInstructor = async (instructorDetails: InstructorDetails) => {
     if(!user) throw new Error("Instructor registration failed");
 
     // profile image upload
-    const result = uploadFileToBucket(avatar, "profiles");
+    const result = await uploadFileToBucket(avatar, "profiles");
     const profilePath = result.path;
 
     const { data: instructor, error: instructorError } = await supabase
@@ -58,7 +58,7 @@ const registerAsInstructor = async (instructorDetails: InstructorDetails) => {
             name,
             email,
             bio,
-            avatar: ,
+            avatar: profilePath ,
             password,
             profession,
             category,
